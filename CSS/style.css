@@ -1,0 +1,87 @@
+/*carrusel*/
+.texto-superpuesto {
+    z-index: 1; /* Asegura que el texto esté en un orden de apilamiento superior a las imágenes */
+    top: 50%; /* Ajusta la posición vertical del texto si es necesario */
+    left: 50%; /* Ajusta la posición horizontal del texto si es necesario */
+    transform: translate(-50%, -50%); /* Centra el texto en el contenedor */
+    font-size: 1em;
+    /* Otros estilos que desees aplicar al texto */
+}
+    
+/* Estilos adicionales para mejorar la legibilidad */
+.texto-superpuesto {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    color: white; /* Color del texto */
+    padding: 20px; /* Añade un poco de espacio alrededor del texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra de texto */
+}
+  
+@media (max-width: 768px) {
+    /* Estilos para pantallas más pequeñas, como dispositivos móviles */
+    .texto-superpuesto {
+      font-size: 0.7em;
+    }
+}
+
+.btn-tickets{
+  background: rgb(41, 167, 68); 
+  color: white;       
+}
+
+  .bright{
+    filter: brightness(50%);
+    height: 600px;
+}  
+
+/* Estilos para darle a los cards */
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+  transition: all;
+  transition-duration: 500ms;
+  transform: scale(1.01);
+}
+
+.btncards a.btn{
+  padding: 0.2rem 1rem;
+  transition: all;
+  transition-duration: 500ms;
+}
+
+.btncards a.btn:hover{
+  box-shadow: 0 2px 4px rgb(0, 0, 0);
+  transition: box-shadow 0.1s ease;
+  transform: scale(1.01);
+}
+
+/* texto centro para los oradores*/
+.textoChico {
+    font-size: .8rem;
+}
+
+.bgGrisoscuro{
+    background-color: rgb(53, 58, 64);
+}
+
+.titulo{
+    font-size: 0.7rem;
+}
+
+/* Boton del registro, color verde enviar */
+  .boton-verde {
+    background-color: #9adf41;
+    color: white;
+    border: none; /* Elimina el borde */
+    outline: none; /* Elimina el borde al enfocar */
+    box-shadow: none; /* Elimina cualquier sombra al enfocar */
+  }
+
+  .mi-footer {
+    background-color: #296484; /* Cambia el color a tu preferencia */
+    color: white; /* Cambia el color del texto si es necesario para que sea legible */
+    padding: 20px; /* Añade relleno (padding) si es necesario para dar espacio al contenido del footer */
+  }
+  
+  footer.mi-footer a {
+    text-decoration: none;
+    
+  }
