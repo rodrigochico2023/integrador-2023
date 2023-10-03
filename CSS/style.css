@@ -85,3 +85,22 @@
     text-decoration: none;
     
   }
+
+
+  /* para estilizar el btn de comprar tickets*/
+
+  .custom-btn-width {
+    width: 80px; /* Cambia el valor para ajustar el ancho deseado */
+}
+
+.custom-btn-width {
+  width: 100px; /* Cambia el valor para ajustar el ancho deseado */
+}
+
+.custom-btn-motion {
+  transition: transform 0.3s ease; /* Agrega una transición a la propiedad de transformación (puedes ajustar la duración y el efecto) */
+}
+
+.custom-btn-motion:hover {
+  transform: translateX(10px); /* Aplica una transformación al botón cuando se pasa el mouse sobre él */
+}
