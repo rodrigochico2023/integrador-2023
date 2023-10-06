@@ -10,13 +10,17 @@
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <!-- estilos css  -->
   <link rel="stylesheet" href="../CSS/style.css">
+
+  <!-- cdn animate  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
 </head>
 
 <body>
   <!-- inicio de nav -->
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container">
-      <a class="navbar-brand" href="#" class="m-3">
+      <a class="navbar-brand" href="../index.html" class="m-3">
         <img src="../Imagenes/codoacodo.png" width="120" height="auto">Conf Bs As
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -47,46 +51,85 @@
 
   <!-- fin de nav -->
 
-
-
-  <!-- Formulario comprar tickets -->
-  <div class="container text-bg-info p-3">
+  <!-- inicio de los registros de compra -->
+  <div class="container text-bg-info p-3 formulario-section">
     <div class="container my-3">
-      <form action="Server/procesarCompraTicket.html" method="post">
+      <div class="row mb-3">
+        <div>
+          <h1 class="text-center text-black">Compra tu tickets desde cualquier dispositivo</h1>
+        </div>
+        <div class="text-black fw-bold m-3">
+          <h5>Oportunidades únicas</h5>
+          <div class="animate__animated animate__fadeInLeft animate__delay-1s">
+            <li>Particulares descuento 20%</li>
+          </div>
+          <div class="animate__animated animate__fadeInLeft animate__delay-2s">
+            <li>Estudiantes descuento 30%</li>
+          </div>
+          <div class="animate__animated animate__fadeInLeft animate__delay-3s">
+            <li>Oradores descuento 50%</li>
+          </div>
+        </div>
+        <div class="col-md-4 mb-2">
+          <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="form-control" required>
+        </div>
+        <div class="col-md-4 mb-2">
+          <input type="text" name="apellido" id="apellido" placeholder="Apellido" class="form-control" required>
+        </div>
+        <div class="col-md-4 mb-2">
+          <input type="email" name="email" id="email" placeholder="Email" class="form-control" required>
+        </div>
+      </div>
+      <form action="Server/procesarCompraTicket.html" method="post" onsubmit="return false;">
         <div class="row mb-3">
-          <div class="col-md-4 ">
-            <input type="text" name="cant" id="cant" onkeyup="calcTotal()" placeholder="Cantidad de tickets"
-              class="form-control">
-            <div class="small">
-              Valor por unidad <span class="fw-bold text-bg-warning text-black">$1000</span>
+          <div class="col-md-4">
+            <input type="number" name="cant" id="cant" oninput="calcTotal()" placeholder="Cantidad de tickets" class="form-control">
+            <div class="small text-black">
+              Valor por unidad <span class="fw-bold fs-5 text-black">$1000</span>
             </div>
           </div>
           <div class="col-md-4">
-            <select id="tipoUsuario" onchange="calcTotal()" class="form-control ">
-              <option value="normal">Particular</option>
+            <select id="tipoUsuario" onchange="calcTotal()" class="form-control">
+              <option value="particular">Particular</option>
               <option value="estudiante">Estudiante</option>
               <option value="orador">Orador</option>
             </select>
           </div>
-          <div class="col-md-4 fw-bold fs-5 text-center ">
-            Total a pagar $ <samp id="total">0</samp>
+          <div class="col-md-4 fw-bold fs-5 text-center">
+            Total a pagar $ <span id="total-a-pagar">0.00</span>
           </div>
         </div>
         <div class="row mb-3">
           <div class="col-md-11">
             <div class="col-md-11 text-end">
-              <input type="submit" value="Comprar" class="btn btn-primary custom-btn-width custom-btn-motion">
+              <button type="button" class="btn btn-primary custom-btn-width fw-bold text-black custom-btn-motion boton-verificar" onclick="verificarDatos()" id="boton-verificar"> Verificar datos </button>
             </div>
           </div>
         </div>
       </form>
+      <div class="text-center mt-4 animate__animated animate__fadeIn" id="confirmacion-datos" style="display: none;">
+        <h3>Confirmación de Datos:</h3>
+        <p><strong>Nombre:</strong> <span id="nombre-ingresado"></span></p>
+        <p><strong>Apellido:</strong> <span id="apellido-ingresado"></span></p>
+        <p><strong>Email:</strong> <span id="email-ingresado"></span></p>
+        <p><strong>Cantidad de Tickets:</strong> <span id="cant-ingresada"></span></p>
+        <p><strong>Tipo de Usuario:</strong> <span id="tipoUsuario-ingresado"></span></p>
+        <p><strong>Total a Pagar:</strong> $<span id="total-ingresado">0.00</span></p>
+      </div>
     </div>
   </div>
+  <div class="text-center mt-4 animate__animated animate__fadeIn" id="botones-confirmar-limpiar" style="display: none;">
+    <button class="btn btn-primary custom-btn-width text-black fw-bold custom-btn-motion boton-confirmar-compra"
+      onclick="confirmarCompra()">Confirmar Compra</button>
+    <button class="btn btn-primary custom-btn-width text-black fw-bold custom-btn-motion boton-realizar-otra-compra"
+      onclick="habilitarCampos()">Desea realizar otra compra</button>
+  </div>
+<!-- inicio de los registros de compra -->
 
 
 
+  <!-- inicio de footer -->
 
-  <!-- comienzo del footer -->
   <footer class="mi-footer m-3">
     <div class="container-fluid text-center col-lg">
       <div class="row align-items-center">
@@ -114,8 +157,22 @@
       </div>
     </div>
 
+    <div class="container-fluid text-center col-lg m-4 ">
+      <div class="row">
+        <div class="col">
+          <a href="#" class="text-white">Política de Privacidad</a>
+        </div>
+        <div class="col">
+          &copy; 2023 Integrador - RChico
+        </div>
+        <div class="col">
+          <a href="#" class="text-white">Términos y Condiciones</a>
+        </div>
+      </div>
+    </div>
   </footer>
-  <!-- fin del footer -->
+
+  <!-- fin de footer -->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

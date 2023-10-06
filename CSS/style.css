@@ -5,19 +5,18 @@
     left: 50%; /* Ajusta la posición horizontal del texto si es necesario */
     transform: translate(-50%, -50%); /* Centra el texto en el contenedor */
     font-size: 1em;
-    /* Otros estilos que desees aplicar al texto */
 }
     
-/* Estilos adicionales para mejorar la legibilidad */
+/* Estilos adicionales para mejorar la legibilidad en el carrusel */
 .texto-superpuesto {
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
-    color: white; /* Color del texto */
-    padding: 20px; /* Añade un poco de espacio alrededor del texto */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra de texto */
+    background-color: rgba(0, 0, 0, 0.5); 
+    color: white;
+    padding: 20px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
 }
-  
-@media (max-width: 768px) {
-    /* Estilos para pantallas más pequeñas, como dispositivos móviles */
+
+ /* Estilos para dispositivos móviles */
+@media (max-width: 768px) {   
     .texto-superpuesto {
       font-size: 0.7em;
     }
@@ -32,6 +31,7 @@
     filter: brightness(50%);
     height: 600px;
 }  
+
 
 /* Estilos para darle a los cards */
 .card:hover {
@@ -53,6 +53,7 @@
   transform: scale(1.01);
 }
 
+
 /* texto centro para los oradores*/
 .textoChico {
     font-size: .8rem;
@@ -66,13 +67,14 @@
     font-size: 0.7rem;
 }
 
+
 /* Boton del registro, color verde enviar */
   .boton-verde {
     background-color: #9adf41;
     color: white;
-    border: none; /* Elimina el borde */
-    outline: none; /* Elimina el borde al enfocar */
-    box-shadow: none; /* Elimina cualquier sombra al enfocar */
+    border: none; 
+    outline: none; 
+    box-shadow: none; 
   }
 
   .mi-footer {
@@ -89,18 +91,32 @@
 
   /* para estilizar el btn de comprar tickets*/
 
-  .custom-btn-width {
-    width: 80px; /* Cambia el valor para ajustar el ancho deseado */
-}
-
 .custom-btn-width {
-  width: 100px; /* Cambia el valor para ajustar el ancho deseado */
+  width: 250px; 
 }
 
 .custom-btn-motion {
-  transition: transform 0.3s ease; /* Agrega una transición a la propiedad de transformación (puedes ajustar la duración y el efecto) */
+  transition: transform 0.3s ease; 
 }
 
 .custom-btn-motion:hover {
-  transform: translateX(10px); /* Aplica una transformación al botón cuando se pasa el mouse sobre él */
+  transform: translate(10px); 
+}
+
+@media (max-width: 768px) {
+  .boton-confirmar-compra,
+  .boton-realizar-otra-compra {
+    margin-top: 10px; 
+  }
+}
+
+
+/* Estilo para la imagen de fondo en la sección de comprar tickets */
+.formulario-section {
+  background-image: url('../Imagenes/fondo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Esto hace que la imagen de fondo se mantenga fija mientras se desplaza la página */
+  color: white; /
 }

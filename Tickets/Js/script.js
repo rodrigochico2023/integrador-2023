@@ -1,41 +1,68 @@
-/* function calcTotal(){
-    console.log("Ingreso a calcTotal")
 
-    let cant=document.getElementById("cant").value
-    console.log(cant)
+// Función para habilitar campos
+function habilitarCampos() {
+  document.getElementById("nombre").value = "";
+  document.getElementById("apellido").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("cant").value = "";
+  document.getElementById("tipoUsuario").value = "particular";
 
-    let total=cant*1000
-    console.log(total)
+  document.getElementById("nombre").readOnly = false;
+  document.getElementById("apellido").readOnly = false;
+  document.getElementById("email").readOnly = false;
+  document.getElementById("cant").readOnly = false;
+  document.getElementById("tipoUsuario").disabled = false;
 
-    document.getElementById("total").innerHTML=total
+  document.getElementById("confirmacion-datos").style.display = "none";
+  document.getElementById("botones-confirmar-limpiar").style.display = "none";
+  document.getElementById("boton-verificar").textContent = "Verificar datos";
+  document.getElementById("total-a-pagar").textContent = "0.00";
+}
 
+function verificarDatos() {
+  var nombre = document.getElementById("nombre").value;
+  var apellido = document.getElementById("apellido").value;
+  var email = document.getElementById("email").value;
+  var cantidad = document.getElementById("cant").value;
+  var tipoUsuario = document.getElementById("tipoUsuario").value;
 
-} */
+  document.getElementById("nombre-ingresado").textContent = nombre;
+  document.getElementById("apellido-ingresado").textContent = apellido;
+  document.getElementById("email-ingresado").textContent = email;
+  document.getElementById("cant-ingresada").textContent = cantidad;
+  document.getElementById("tipoUsuario-ingresado").textContent = tipoUsuario;
+
+  calcTotal();
+
+  document.getElementById("confirmacion-datos").style.display = "block";
+  document.getElementById("boton-verificar").textContent = "Datos Verificados";
+  document.getElementById("botones-confirmar-limpiar").style.display = "block";
+
+  var total = document.getElementById("total-a-pagar").textContent;
+  document.getElementById("total-ingresado").textContent = total;
+}
+
+function confirmarCompra() {
+  // Agregar aquí la lógica para procesar la compra (por ejemplo, enviar datos al servidor)
+  alert("Compra confirmada. Redirigiendo a la página de confirmación...");
+  // Redirigir al usuario a la página de confirmación
+  window.location.href = "pagina_de_confirmacion.html"; // Reemplaza con la URL de la página de confirmación que desees
+}
 
 function calcTotal() {
-    console.log("Ingreso a calcTotal");
+  var cantidad = parseFloat(document.getElementById("cant").value) || 0;
+  var valorUnidad = 1000;
+  var tipoUsuario = document.getElementById("tipoUsuario").value;
 
-    let cant = parseFloat(document.getElementById("cant").value);
-    console.log(cant);
+  var descuento = 0;
+  if (tipoUsuario === "particular") {
+    descuento = 0.2;
+  } else if (tipoUsuario === "estudiante") {
+    descuento = 0.3;
+  } else if (tipoUsuario === "orador") {
+    descuento = 0.5;
+  }
 
-    let tipoUsuario = document.getElementById("tipoUsuario").value;
-    console.log(tipoUsuario);
-
-    let descuento = 0;
-
-    if (isNaN(cant)) {
-        document.getElementById("total").innerHTML = "Ingrese tickets";
-        return;
-    }
-
-    if (tipoUsuario === "estudiante") {
-        descuento = 0.30; // 30% de descuento para alumnos
-    } else if (tipoUsuario === "orador") {
-        descuento = 0.50; // 50% de descuento para oradores
-    }
-
-    let total = cant * 1000 * (1 - descuento);
-    console.log(total);
-
-    document.getElementById("total").innerHTML = total.toFixed(2);
+  var total = cantidad * valorUnidad * (1 - descuento);
+  document.getElementById("total-a-pagar").textContent = total.toFixed(2);
 }
