@@ -120,3 +120,24 @@
   background-attachment: fixed; /* Esto hace que la imagen de fondo se mantenga fija mientras se desplaza la página */
   color: white; /
 }
+
+.img-left-align {
+  float: left;
+  margin-right: 10px; /* Espacio entre la imagen y el contenido */
+}
+
+/* fuentes*/
+
+.comprar-tikets{
+font-family: 'Satisfy', cursive;
+text-align: center;
+}
+
+
+
+
+
+.highlight {
+  border: 2px solid red; /* Cambia el borde de la tarjeta a rojo (puedes personalizarlo) */
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Agrega una sombra roja (puedes personalizarla) */
+}

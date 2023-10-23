@@ -14,6 +14,11 @@
   <!-- cdn animate  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
+  <!-- fuentes  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -55,19 +60,39 @@
   <div class="container text-bg-info p-3 formulario-section">
     <div class="container my-3">
       <div class="row mb-3">
-        <div>
-          <h1 class="text-center text-black">Compra tu tickets desde cualquier dispositivo</h1>
-        </div>
+        <h1 class="comprar-tikets fs-1">Compra tu tickets desde cualquier dispositivo</h1>
         <div class="text-black fw-bold m-3">
-          <h5>Oportunidades únicas</h5>
-          <div class="animate__animated animate__fadeInLeft animate__delay-1s">
-            <li>Particulares descuento 20%</li>
-          </div>
-          <div class="animate__animated animate__fadeInLeft animate__delay-2s">
-            <li>Estudiantes descuento 30%</li>
-          </div>
-          <div class="animate__animated animate__fadeInLeft animate__delay-3s">
-            <li>Oradores descuento 50%</li>
+          <h5 class="comprar-tikets fs-1">Oportunidades únicas</h5>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-4 card animate__animated animate__fadeInLeft animate__delay-1s m-2" style="width: 25rem;" id="particular-card">
+                <div class="card-body" onclick="sel('particular')" data-discount="20">
+                  <h5 class="card-title text-danger fw-bold">Generales, descuento 20%</h5>
+                  <p class="card-text">Cualquier persona Particular, puede hacer uso de la compra del o los tikets, y
+                    obtener un 20% de descuento</p>
+                  <!-- <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a> -->
+                </div>
+              </div>
+              <div class="col-4 card animate__animated animate__fadeInLeft animate__delay-2s m-2" style="width: 25rem;" id="orador-card">
+                <div class="card-body" onclick="sel('estudiante')">
+                  <h5 class="card-title text-primary fw-bold">Estudiantes, descuento 30%</h5>
+                  <p class="card-text">Estudiantes de cualquier carrera, puede hacer uso de la compra del o los tikets, y obtener un
+                    30% de descuento</p>
+                  <!-- <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a> -->
+                </div>
+              </div>
+              <div class="col-4 card animate__animated animate__fadeInLeft animate__delay-3s m-2" style="width: 25rem;" id="estudiante-card">
+                <div class="card-body" onclick="sel('orador')">
+                  <h5 class="card-title text-info fw-bold">Oradores, descuento 50%</h5>
+                  <p class="card-text">Los Oradores, puede hacer uso de la compra del o los tikets, y obtener un 50% de
+                    descuento</p>
+                  <!-- <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a> -->
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-md-4 mb-2">
@@ -80,43 +105,47 @@
           <input type="email" name="email" id="email" placeholder="Email" class="form-control" required>
         </div>
       </div>
-      <form action="Server/procesarCompraTicket.html" method="post" onsubmit="return false;">
-        <div class="row mb-3">
-          <div class="col-md-4">
-            <input type="number" name="cant" id="cant" oninput="calcTotal()" placeholder="Cantidad de tickets" class="form-control">
-            <div class="small text-black">
-              Valor por unidad <span class="fw-bold fs-5 text-black">$1000</span>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <select id="tipoUsuario" onchange="calcTotal()" class="form-control">
-              <option value="particular">Particular</option>
-              <option value="estudiante">Estudiante</option>
-              <option value="orador">Orador</option>
-            </select>
-          </div>
-          <div class="col-md-4 fw-bold fs-5 text-center">
-            Total a pagar $ <span id="total-a-pagar">0.00</span>
-          </div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-md-11">
-            <div class="col-md-11 text-end">
-              <button type="button" class="btn btn-primary custom-btn-width fw-bold text-black custom-btn-motion boton-verificar" onclick="verificarDatos()" id="boton-verificar"> Verificar datos </button>
-            </div>
-          </div>
-        </div>
-      </form>
-      <div class="text-center mt-4 animate__animated animate__fadeIn" id="confirmacion-datos" style="display: none;">
-        <h3>Confirmación de Datos:</h3>
-        <p><strong>Nombre:</strong> <span id="nombre-ingresado"></span></p>
-        <p><strong>Apellido:</strong> <span id="apellido-ingresado"></span></p>
-        <p><strong>Email:</strong> <span id="email-ingresado"></span></p>
-        <p><strong>Cantidad de Tickets:</strong> <span id="cant-ingresada"></span></p>
-        <p><strong>Tipo de Usuario:</strong> <span id="tipoUsuario-ingresado"></span></p>
-        <p><strong>Total a Pagar:</strong> $<span id="total-ingresado">0.00</span></p>
-      </div>
     </div>
+    <form action="Server/procesarCompraTicket.html" method="post" onsubmit="return false;">
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <input type="number" name="cant" id="cant" oninput="calcTotal()" placeholder="Cantidad de tickets"
+            class="form-control">
+          <div class="small text-black">
+            Valor por unidad <span class="fw-bold fs-5 text-black">$1000</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <select id="tipoUsuario" onchange="calcTotal()" class="form-control">
+            <option value="particular">Particular</option>
+            <option value="estudiante">Estudiante</option>
+            <option value="orador">Orador</option>
+          </select>
+        </div>
+        <div class="col-md-4 fw-bold fs-5 text-center">
+          Total a pagar $ <span id="total-a-pagar">0.00</span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-11">
+          <div class="col-md-11 text-end">
+            <button type="button"
+              class="btn btn-primary custom-btn-width fw-bold text-black custom-btn-motion boton-verificar"
+              onclick="verificarDatos()" id="boton-verificar"> Verificar datos </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="text-center mt-4 animate__animated animate__fadeIn" id="confirmacion-datos" style="display: none;">
+      <h3>Confirmación de Datos:</h3>
+      <p><strong>Nombre:</strong> <span id="nombre-ingresado"></span></p>
+      <p><strong>Apellido:</strong> <span id="apellido-ingresado"></span></p>
+      <p><strong>Email:</strong> <span id="email-ingresado"></span></p>
+      <p><strong>Cantidad de Tickets:</strong> <span id="cant-ingresada"></span></p>
+      <p><strong>Tipo de Usuario:</strong> <span id="tipoUsuario-ingresado"></span></p>
+      <p><strong>Total a Pagar:</strong> $<span id="total-ingresado">0.00</span></p>
+    </div>
+  </div>
   </div>
   <div class="text-center mt-4 animate__animated animate__fadeIn" id="botones-confirmar-limpiar" style="display: none;">
     <button class="btn btn-primary custom-btn-width text-black fw-bold custom-btn-motion boton-confirmar-compra"
@@ -124,7 +153,7 @@
     <button class="btn btn-primary custom-btn-width text-black fw-bold custom-btn-motion boton-realizar-otra-compra"
       onclick="habilitarCampos()">Desea realizar otra compra</button>
   </div>
-<!-- inicio de los registros de compra -->
+  <!-- fin de los registros de compra -->
 
 
 
